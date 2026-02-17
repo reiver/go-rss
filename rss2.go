@@ -20,13 +20,26 @@ type Channel struct {
 }
 
 type Item struct {
-	Author      string   `xml:"author"`
-	Categories  []string `xml:"category"`
-	Description string   `xml:"description"`
-	GUID        GUID     `xml:"guid"`
-	Link        string   `xml:"link"`
-	PubDate     PubDate  `xml:"pubDate"`
-	Title       string   `xml:"title"`
+	Author      string      `xml:"author"`
+	Categories  []string    `xml:"category"`
+	Description Description `xml:"description"`
+	GUID        GUID        `xml:"guid"`
+	Link        string      `xml:"link"`
+	PubDate     PubDate     `xml:"pubDate"`
+	Title       string      `xml:"title"`
+}
+
+type Description struct {
+	Value string `xml:",chardata"`
+}
+
+func (receiver *Description) HTML() string {
+	if nil == receiver {
+		panic(ErrNilReceiver)
+	}
+
+	//@TODO
+	return receiver.Value
 }
 
 type GUID struct {

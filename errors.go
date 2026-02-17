@@ -5,5 +5,6 @@ import (
 )
 
 const (
+	ErrNilReceiver       = erorr.Error("nil receiver")
 	ErrPubDateUnparsable = erorr.Error("RSS pubDate unparsable")
 )
