@@ -3,6 +3,8 @@ package rss
 import (
 	"encoding/xml"
 	"fmt"
+	"html"
+	"strings"
 	"time"
 )
 
@@ -38,8 +40,14 @@ func (receiver *Description) HTML() string {
 		panic(ErrNilReceiver)
 	}
 
-	//@TODO
-	return receiver.Value
+	switch {
+	case strings.HasPrefix(receiver.Value, "&lt;"):
+		return html.UnescapeString(receiver.Value)
+	case strings.HasPrefix(receiver.Value, "<"): //@TODO: perhaps this should be a bit more sophisticated
+		return receiver.Value
+	default:
+		return strings.ReplaceAll(html.EscapeString(receiver.Value), "\n\n", "<br /><br />") //@TODO: perhaps this should be a bit more sophisticated
+	}
 }
 
 type GUID struct {
