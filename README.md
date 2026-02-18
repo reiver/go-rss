@@ -1,6 +1,6 @@
 # go-rss
 
-Package **rss** implements RSS encoders and decoders, for the Go programming language.
+Package **rss** implements encoders and decoders for the **RSS** (**Really Simple Syndication**) web-feed format, for the Go programming language.
 
 Package **rss** is meant to be used with the Go built-in `"encoding/xml"` package.
 
