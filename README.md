@@ -12,7 +12,7 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 
 ## Examples
 
-To marshal a Go value to JSON, you can do something similar to the following:
+To unmarshal RSS data to `rss.RSS2` in Go, you can do something similar to the following:
 
 ```golang
 import (
@@ -26,6 +26,22 @@ import (
 var rss2 rss.RSS2
 
 err := xml.Unmarshal(p, &rss2)
+```
+
+To make an HTTP request to a URL for RSS and then unmarshal it, you can do something similar to the following:
+
+```golang
+import (
+	"github.com/reiver/go-rss"
+}
+
+// ...
+
+url := "https://mastodon.social/tags/fedidev.rss"
+
+var rss2 rss.RSS2
+
+err := rss.HTTPGetAndUnmarshal(url, &rss2)
 ```
 
 ## Installation
